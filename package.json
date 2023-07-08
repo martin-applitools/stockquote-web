@@ -1,7 +1,7 @@
 {
   "name": "demobank",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -9,12 +9,14 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "mocha": "^10.2.0",
+    "@applitools/eyes-selenium": "^4.66.10",
+    "web-vitals": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "mocha --no-timeouts src/test/*.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
