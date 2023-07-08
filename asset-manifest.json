@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0cf18a1e.css",
+    "main.js": "/static/js/main.729a8183.js",
+    "static/js/496.05664cda.chunk.js": "/static/js/496.05664cda.chunk.js",
+    "static/media/Inter-Bold.ttf": "/static/media/Inter-Bold.a73db89c43e44ca8f5e0.ttf",
+    "static/media/Inter-SemiBold.ttf": "/static/media/Inter-SemiBold.45b4c2ae493bb481102f.ttf",
+    "static/media/Inter-Medium.ttf": "/static/media/Inter-Medium.e7231ba33760832432b8.ttf",
+    "static/media/Inter-Regular.ttf": "/static/media/Inter-Regular.2391725004ae05a27e8e.ttf",
+    "static/media/Roboto-Regular.ttf": "/static/media/Roboto-Regular.a8d6ac03c7b96b7acb62.ttf",
+    "static/media/Heebo-Medium.ttf": "/static/media/Heebo-Medium.fa56b7e264b93408f82f.ttf",
+    "static/media/Heebo-Regular.ttf": "/static/media/Heebo-Regular.9667d671d5a86bb83fdc.ttf",
+    "static/media/Heebo-Bold.ttf": "/static/media/Heebo-Bold.049b815f8359b84d0b5e.ttf",
+    "static/media/DMSans-Bold.ttf": "/static/media/DMSans-Bold.da49214b2d88abca155c.ttf",
+    "static/media/DMSans-Medium.ttf": "/static/media/DMSans-Medium.f458346900579196593a.ttf",
+    "index.html": "/index.html",
+    "main.0cf18a1e.css.map": "/static/css/main.0cf18a1e.css.map",
+    "main.729a8183.js.map": "/static/js/main.729a8183.js.map",
+    "496.05664cda.chunk.js.map": "/static/js/496.05664cda.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0cf18a1e.css",
+    "static/js/main.729a8183.js"
+  ]
+}
