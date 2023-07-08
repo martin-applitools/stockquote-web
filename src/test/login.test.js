@@ -32,7 +32,7 @@ describe('Demo App Tests', () => {
         // if (process.env.("CI") !==null) {
         //
         // }
-        //applitoolsApiKey = process.env.APPLITOOLS_API_KEY_EC;
+        applitoolsApiKey = process.env.APPLITOOLS_API_KEY;
 
         //Set Headless Mode and Window Size for Local Execution
         options = ['headless']
@@ -70,7 +70,7 @@ describe('Demo App Tests', () => {
             .withCapabilities({
                 browserName: 'chrome',
                 "applitools:eyesServerUrl": "https://eyesapi.applitools.com",
-                //"applitools:apiKey": applitoolsApiKey,
+                "applitools:apiKey": applitoolsApiKey,
                 "applitools:useSelfHealing": true,
                 "applitools:tunnel": false,
                 })
