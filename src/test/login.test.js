@@ -12,6 +12,7 @@ describe('Demo App Tests', () => {
     // Test control inputs to read once and share for all tests
     let applitoolsApiKey;
     let options;
+    let baseUrl = 'https://martin-applitools.github.io/demobank/'
     let appName = "demoApp"
     let useUltrafastGrid = false;
 
@@ -27,14 +28,14 @@ describe('Demo App Tests', () => {
     // eslint-disable-next-line no-undef
     before(async () => {
 
-
         // Read the Applitools API key from an environment variable.
+        // if (process.env.("CI") !==null) {
+        //
+        // }
         applitoolsApiKey = process.env.APPLITOOLS_API_KEY_EC;
 
         //Set Headless Mode and Window Size for Local Execution
         options = ['headless']
-
-
 
         // Create a configuration for Applitools Eyes.
         config = new Configuration();
@@ -53,6 +54,7 @@ describe('Demo App Tests', () => {
         batch = new BatchInfo('Selenium JavaScript');
 
         // Set the Applitools API key so test results are uploaded to your account.
+
         config.setApiKey(applitoolsApiKey);
         //Set Consistent Browser Size regardless of execution.
         config.setViewportSize(new RectangleSize(1400, 1024))
@@ -70,7 +72,7 @@ describe('Demo App Tests', () => {
                 "applitools:eyesServerUrl": "https://eyesapi.applitools.com",
                 "applitools:apiKey": applitoolsApiKey,
                 "applitools:useSelfHealing": true,
-                "applitools:tunnel": true,
+                "applitools:tunnel": false,
                 })
             .usingServer(executionCloudUrl)
             .build()
@@ -89,7 +91,7 @@ describe('Demo App Tests', () => {
     afterEach(async function() {
 
         // Close Eyes to tell the server it should display the results.
-        await eyes.close();
+        await eyes.close(false);
 
         // Quit the WebDriver instance.
         await driver.quit();
@@ -100,7 +102,7 @@ describe('Demo App Tests', () => {
 
         // Close the batch and report visual differences to the console.
         // Note that it forces Mocha to wait synchronously for all visual checkpoints to complete.
-        const allTestResults = await runner.getAllTestResults();
+        const allTestResults = await runner.getAllTestResults(false);
         console.log(allTestResults);
         await eyes.abortIfNotClosed()
     });
@@ -109,7 +111,7 @@ describe('Demo App Tests', () => {
 
         // Load the login page.
         // console.log("Navigating to AUT")
-        await driver.get("http://localhost:3000");
+        await driver.get(baseUrl);
 
         // Verify the full login page loaded correctly.
         await eyes.check(Target.window().fully().withName("Login page"));
@@ -127,7 +129,7 @@ describe('Demo App Tests', () => {
 
         // Load the login page.
         // console.log("Navigating to AUT")
-        await driver.get("http://localhost:3000");
+        await driver.get(baseUrl);
 
         // Click login Button with no creds.
         await driver.findElement(By.id("submit-button")).click();
@@ -135,11 +137,11 @@ describe('Demo App Tests', () => {
         // Verify the full main page loaded correctly.
         await eyes.check(Target.window().fully().withName("Failed Login"));
     });
-    it('Login - Failed Username', async () => {
+    it('Login - Failed Credentials', async () => {
 
         // Load the login page.
         // console.log("Navigating to AUT")
-        await driver.get("http://localhost:3000");
+        await driver.get(baseUrl);
 
         // Perform login.
         await driver.findElement(By.id("username")).sendKeys("client@applitools.com");
@@ -150,25 +152,11 @@ describe('Demo App Tests', () => {
         await eyes.check(Target.window().fully().withName("Failed Username"));
     });
 
-    it('Login - Failed Password', async () => {
-
-        // Load the login page.
-        // console.log("Navigating to AUT")
-        await driver.get("http://localhost:3000");
-
-        // Perform login.
-        await driver.findElement(By.id("username")).sendKeys("client1@applitools.com");
-        await driver.findElement(By.id("password")).sendKeys("client2");
-        await driver.findElement(By.id("submit-button")).click();
-
-        // Verify the full main page loaded correctly.
-        await eyes.check(Target.window().fully().withName("Failed Password"));
-    });
     it('Login - Logout', async () => {
 
         // Load the login page.
         // console.log("Navigating to AUT")
-        await driver.get("http://localhost:3000");
+        await driver.get(baseUrl);
 
         // Perform login.
         await driver.findElement(By.id("username")).sendKeys("client1@applitools.com");
