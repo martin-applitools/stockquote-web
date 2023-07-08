@@ -49,7 +49,7 @@ describe('Demo App Tests', () => {
 
         // Create a new batch for tests.
         batch = new BatchInfo('Selenium JavaScript');
-        batch.id = process.env.APPLITOOLS_BATCH_ID;
+        // batch.id = process.env.APPLITOOLS_BATCH_ID;
 
         // Set the Applitools API key so test results are uploaded to your account.
 
