@@ -48,7 +48,8 @@ describe('Demo App Tests', () => {
         }
 
         // Create a new batch for tests.
-        //batch = new BatchInfo('Selenium JavaScript');
+        batch = new BatchInfo('Selenium JavaScript');
+        batch.id = process.env.APPLITOOLS_BATCH_ID;
 
         // Set the Applitools API key so test results are uploaded to your account.
 
@@ -57,7 +58,7 @@ describe('Demo App Tests', () => {
         config.setViewportSize(new RectangleSize(1400, 1024))
 
         // Set the batch for the config.
-        // config.setBatch(batch);
+        config.setBatch(batch);
     });
 
     beforeEach(async function() {
