@@ -6,12 +6,12 @@ const { Eyes,
     Configuration,
     BatchInfo, VisualGridRunner, RunnerOptions, StitchMode
 } = require('@applitools/eyes-selenium');
+const chrome = require('selenium-webdriver/chrome')
 
 describe('Demo App Tests', () => {
 
     // Test control inputs to read once and share for all tests
     let applitoolsApiKey;
-    let options;
     let baseUrl = 'https://martin-applitools.github.io/demobank/'
     let appName = "demoApp"
     let useUltrafastGrid = false;
@@ -33,7 +33,8 @@ describe('Demo App Tests', () => {
         applitoolsApiKey = process.env.APPLITOOLS_API_KEY;
 
         //Set Headless Mode and Window Size for Local Execution
-        options = ['--headless', '--incognito']
+
+
 
         // Create a configuration for Applitools Eyes.
         config = new Configuration();
@@ -64,6 +65,8 @@ describe('Demo App Tests', () => {
 
     beforeEach(async function() {
         // Open the browser with the Applitools instance.
+        let options = new chrome.Options()
+        options.addArguments('--incognito')
         let executionCloudUrl = await Eyes.getExecutionCloudUrl()
         driver = new Builder()
             .withCapabilities({
