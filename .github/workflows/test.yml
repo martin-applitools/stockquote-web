@@ -40,14 +40,14 @@ jobs:
         run:
           npm install
 
-      - name: Pre-deploy
-        run:
-          npm run predeploy
-
-      - name: Deploy to Github Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: build # The folder the action should deploy.
+#      - name: Pre-deploy
+#        run:
+#          npm run predeploy
+#
+#      - name: Deploy to Github Pages
+#        uses: JamesIves/github-pages-deploy-action@v4
+#        with:
+#          folder: build # The folder the action should deploy.
 
       - name: Run Visual Regression
         run: npm test

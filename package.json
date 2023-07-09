@@ -20,7 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "predeploy": "CI=false npm run build",
-    "deploy": "gh-pages -d build site1",
+    "deploy": "gh-pages -d build -b site1",
     "test": "mocha --no-timeouts src/test/*.js",
     "eject": "react-scripts eject"
   },
