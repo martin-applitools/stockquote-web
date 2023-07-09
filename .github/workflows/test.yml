@@ -36,10 +36,13 @@ jobs:
       #          node-version: 16
       #          cache: 'npm'
 
-      - name: Install and Build
+      - name: Install
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run:
           npm ci
+
+      - name: Install
+        run:
           npm run predeploy
 
       - name: Deploy to Github Pages
