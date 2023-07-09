@@ -33,7 +33,7 @@ describe('Demo App Tests', () => {
         applitoolsApiKey = process.env.APPLITOOLS_API_KEY;
 
         //Set Headless Mode and Window Size for Local Execution
-        options = ['headless', '--incognito']
+        options = ['headless', 'incognito']
 
         // Create a configuration for Applitools Eyes.
         config = new Configuration();
@@ -67,6 +67,7 @@ describe('Demo App Tests', () => {
         let executionCloudUrl = await Eyes.getExecutionCloudUrl()
         driver = new Builder()
             .withCapabilities({
+                'args': ['--incognito'],
                 browserName: 'chrome',
                 "applitools:eyesServerUrl": "https://eyesapi.applitools.com",
                 "applitools:apiKey": applitoolsApiKey,
