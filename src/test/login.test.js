@@ -15,6 +15,7 @@ describe('Demo App Tests', () => {
     let baseUrl = 'https://martin-applitools.github.io/demobank/'
     let appName = "demoApp"
     let useUltrafastGrid = false;
+    let changeClient = false;
 
     // Applitools objects to share for all tests
     let batch;
@@ -164,6 +165,27 @@ describe('Demo App Tests', () => {
 
         // Verify the full logout is successful
         await eyes.check(Target.window().fully().withName("Logout Screen"));
+    });
+    it('Client Dashboard', async () => {
+
+        // Load the login page.
+        // console.log("Navigating to AUT")
+        await driver.get(baseUrl);
+
+        // Perform login.
+        if (changeClient) {
+            await driver.findElement(By.id("username")).sendKeys("client2@applitools.com");
+            await driver.findElement(By.id("password")).sendKeys("client2");
+            await driver.findElement(By.id("submit-button")).click();
+        }
+        else {
+            await driver.findElement(By.id("username")).sendKeys("client1@applitools.com");
+            await driver.findElement(By.id("password")).sendKeys("client1");
+            await driver.findElement(By.id("submit-button")).click();
+        }
+
+        // Verify the full main page loaded correctly.
+        await eyes.check(Target.window().fully().withName("Client Dashboard"));
     });
 
 
