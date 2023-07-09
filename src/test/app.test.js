@@ -6,15 +6,16 @@ const { Eyes,
     Configuration,
     BatchInfo, VisualGridRunner, RunnerOptions, StitchMode
 } = require('@applitools/eyes-selenium');
+const chrome = require('selenium-webdriver/chrome')
 
 describe('Demo App Tests', () => {
 
     // Test control inputs to read once and share for all tests
     let applitoolsApiKey;
-    let options;
     let baseUrl = 'https://martin-applitools.github.io/demobank/'
     let appName = "demoApp"
     let useUltrafastGrid = false;
+    let changeClient = true;
 
     // Applitools objects to share for all tests
     let batch;
@@ -29,13 +30,11 @@ describe('Demo App Tests', () => {
     before(async () => {
 
         // Read the Applitools API key from an environment variable.
-        // if (process.env.("CI") !==null) {
-        //
-        // }
         applitoolsApiKey = process.env.APPLITOOLS_API_KEY;
 
         //Set Headless Mode and Window Size for Local Execution
-        options = ['headless']
+
+
 
         // Create a configuration for Applitools Eyes.
         config = new Configuration();
@@ -51,7 +50,8 @@ describe('Demo App Tests', () => {
         }
 
         // Create a new batch for tests.
-        batch = new BatchInfo('Selenium JavaScript');
+       // batch = new BatchInfo('Selenium JavaScript');
+        // batch.id = process.env.APPLITOOLS_BATCH_ID;
 
         // Set the Applitools API key so test results are uploaded to your account.
 
@@ -60,11 +60,13 @@ describe('Demo App Tests', () => {
         config.setViewportSize(new RectangleSize(1400, 1024))
 
         // Set the batch for the config.
-        config.setBatch(batch);
+        //config.setBatch(batch);
     });
 
     beforeEach(async function() {
         // Open the browser with the Applitools instance.
+        let options = new chrome.Options()
+        options.addArguments('incognito')
         let executionCloudUrl = await Eyes.getExecutionCloudUrl()
         driver = new Builder()
             .withCapabilities({
@@ -74,6 +76,7 @@ describe('Demo App Tests', () => {
                 "applitools:useSelfHealing": true,
                 "applitools:tunnel": false,
                 })
+            .setChromeOptions(options)
             .usingServer(executionCloudUrl)
             .build()
 
@@ -166,6 +169,27 @@ describe('Demo App Tests', () => {
 
         // Verify the full logout is successful
         await eyes.check(Target.window().fully().withName("Logout Screen"));
+    });
+    it('Client Dashboard', async () => {
+
+        // Load the login page.
+        // console.log("Navigating to AUT")
+        await driver.get(baseUrl);
+
+        // Perform login.
+        if (changeClient) {
+            await driver.findElement(By.id("username")).sendKeys("client2@applitools.com");
+            await driver.findElement(By.id("password")).sendKeys("client2");
+            await driver.findElement(By.id("submit-button")).click();
+        }
+        else {
+            await driver.findElement(By.id("username")).sendKeys("client1@applitools.com");
+            await driver.findElement(By.id("password")).sendKeys("client1");
+            await driver.findElement(By.id("submit-button")).click();
+        }
+
+        // Verify the full main page loaded correctly.
+        await eyes.check(Target.window().fully().withName("Client Dashboard"));
     });
 
 
