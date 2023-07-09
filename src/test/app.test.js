@@ -66,7 +66,7 @@ describe('Demo App Tests', () => {
     beforeEach(async function() {
         // Open the browser with the Applitools instance.
         let options = new chrome.Options()
-        options.addArguments('--incognito')
+        options.addArguments('incognito')
         let executionCloudUrl = await Eyes.getExecutionCloudUrl()
         driver = new Builder()
             .withCapabilities({
