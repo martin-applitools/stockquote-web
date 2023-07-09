@@ -95,20 +95,56 @@ const DATA = [
                 title: "Food take out during the pandemic",
                 amount: 4000
             }
-        ], 
+        ],
         transactions: [
             {
-                title: "Fund transfer", 
-                amount: 2000,
-                type: "debit", 
-                date: "October 1, 2021"
-            }, 
-            {
-                title: "Withdraw", 
-                amount: 10000, 
+                title: "Deposit",
+                amount: 240,
                 type: "debit",
-                date: "October 1, 2021"
-            }
+                date: "May 1, 2023"
+            },
+            {
+                title: "Transfer to Presales #123456",
+                amount: 1243,
+                type: "credit",
+                date: "May 3, 2023"
+            },
+            {
+                title: "Withdraw",
+                amount: 414,
+                type: "credit",
+                date: "May 7, 2023"
+            },
+            {
+                title: "Withdraw",
+                amount: 897,
+                type: "credit",
+                date: "May 14, 2023"
+            },
+            {
+                title: "Deposit",
+                amount: 7403,
+                type: "debit",
+                date: "May 19, 2023"
+            },
+            {
+                title: "Deposit",
+                amount: 403,
+                type: "debit",
+                date: "May 23, 2023"
+            },
+            {
+                title: "Withdraw",
+                amount: 120,
+                type: "credit",
+                date: "May 25, 2023"
+            },
+            {
+                title: "Deposit",
+                amount: 500,
+                type: "debit",
+                date: "May 29, 2023"
+            },
         ]
     },
 ];
