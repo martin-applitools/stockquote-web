@@ -15,7 +15,7 @@ describe('Demo App Tests', () => {
     let baseUrl = 'https://martin-applitools.github.io/demobank/'
     let appName = "demoApp"
     let useUltrafastGrid = false;
-    let changeClient = false;
+    let changeClient = true;
 
     // Applitools objects to share for all tests
     let batch;
