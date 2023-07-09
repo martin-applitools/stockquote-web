@@ -33,7 +33,7 @@ describe('Demo App Tests', () => {
         applitoolsApiKey = process.env.APPLITOOLS_API_KEY;
 
         //Set Headless Mode and Window Size for Local Execution
-        options = ['headless', 'incognito']
+        options = ['--headless', '--incognito']
 
         // Create a configuration for Applitools Eyes.
         config = new Configuration();
