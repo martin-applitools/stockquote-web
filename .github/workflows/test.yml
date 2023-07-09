@@ -58,6 +58,7 @@ jobs:
           APPLITOOLS_DONT_CLOSE_BATCHES: true
 
   batch-completion-notification:
+    needs: [build-deploy-test]
     runs-on: ubuntu-latest
     steps:
       - name: Update Applitools Batch Status
