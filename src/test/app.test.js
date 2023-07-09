@@ -67,13 +67,13 @@ describe('Demo App Tests', () => {
         let executionCloudUrl = await Eyes.getExecutionCloudUrl()
         driver = new Builder()
             .withCapabilities({
-                'args': ['--incognito'],
                 browserName: 'chrome',
                 "applitools:eyesServerUrl": "https://eyesapi.applitools.com",
                 "applitools:apiKey": applitoolsApiKey,
                 "applitools:useSelfHealing": true,
                 "applitools:tunnel": false,
                 })
+            .setChromeOptions(options)
             .usingServer(executionCloudUrl)
             .build()
 
