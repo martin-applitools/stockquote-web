@@ -4,7 +4,7 @@ const { Eyes,
     Target,
     RectangleSize,
     Configuration,
-    BatchInfo, VisualGridRunner, RunnerOptions, StitchMode
+    BatchInfo, VisualGridRunner, RunnerOptions, StitchMode, BrowserType
 } = require('@applitools/eyes-selenium');
 const chrome = require('selenium-webdriver/chrome')
 
@@ -15,7 +15,8 @@ describe('Demo App Tests', () => {
     let baseUrl = 'https://martin-applitools.github.io/demobank/'
     let appName = "demoApp"
     let useUltrafastGrid = false;
-    let changeClient = true;
+    let changeClient = false;
+    let simdiffs = false;
 
     // Applitools objects to share for all tests
     let batch;
@@ -30,7 +31,7 @@ describe('Demo App Tests', () => {
     before(async () => {
 
         // Read the Applitools API key from an environment variable.
-        applitoolsApiKey = process.env.APPLITOOLS_API_KEY;
+        applitoolsApiKey = process.env.APPLITOOLS_API_KEY_EC;
 
         //Set Headless Mode and Window Size for Local Execution
 
@@ -42,6 +43,18 @@ describe('Demo App Tests', () => {
         // Create the classic runner.
         if (useUltrafastGrid) {
             runner = new VisualGridRunner(new RunnerOptions().testConcurrency(20))
+            config.addBrowser(1920, 1080, BrowserType.CHROME);
+            config.addBrowser(1920, 1080, BrowserType.CHROME_ONE_VERSION_BACK);
+            config.addBrowser(1920, 1080, BrowserType.CHROME_TWO_VERSIONS_BACK);
+            config.addBrowser(1920, 1080, BrowserType.FIREFOX);
+            config.addBrowser(1920, 1080, BrowserType.SAFARI);
+            config.addBrowser(1920, 1080, BrowserType.EDGE_CHROMIUM);
+            config.addBrowser(1400, 900, BrowserType.CHROME);
+            config.addBrowser(1400, 900, BrowserType.CHROME_ONE_VERSION_BACK);
+            config.addBrowser(1400, 900, BrowserType.CHROME_TWO_VERSIONS_BACK);
+            config.addBrowser(1400, 900, BrowserType.FIREFOX);
+            config.addBrowser(1400, 900, BrowserType.SAFARI);
+            config.addBrowser(1400, 900, BrowserType.EDGE_CHROMIUM);
         }
         else {
             runner = new ClassicRunner();
@@ -60,7 +73,8 @@ describe('Demo App Tests', () => {
         config.setViewportSize(new RectangleSize(1400, 1024))
 
         // Set the batch for the config.
-        //config.setBatch(batch);
+        batch = new BatchInfo('Demobank Regression Suite');
+        config.setBatch(batch);
     });
 
     beforeEach(async function() {
@@ -107,7 +121,6 @@ describe('Demo App Tests', () => {
         // Note that it forces Mocha to wait synchronously for all visual checkpoints to complete.
         const allTestResults = await runner.getAllTestResults(false);
         console.log(allTestResults);
-        await eyes.abortIfNotClosed()
     });
 
     it('Login - Success', async () => {
@@ -118,6 +131,10 @@ describe('Demo App Tests', () => {
 
         // Verify the full login page loaded correctly.
         await eyes.check(Target.window().fully().withName("Login page"));
+        //
+        if (simdiffs) {
+            await driver.executeScript("document.querySelector('#submit-button').id = 'access'")
+        }
 
         // Perform login.
         await driver.findElement(By.id("username")).sendKeys("client1@applitools.com");
