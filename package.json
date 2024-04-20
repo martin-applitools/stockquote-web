@@ -1,20 +1,19 @@
 {
-  "name": "demobank",
+  "name": "stockquote",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://martin-applitools.github.io/demobank/",
+  "homepage": "https://martin-applitools.github.io/stockquote-web/",
   "dependencies": {
-    "@applitools/eyes-selenium": "^4.66.10",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "gh-pages": "^5.0.0",
-    "mocha": "^10.2.0",
+    "@applitools/eyes-selenium": "^4.77.0",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^15.0.2",
+    "@testing-library/user-event": "^14.5.2",
+    "gh-pages": "^6.1.1",
+    "mocha": "^10.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "selenium-webdriver": "^4.10.0",
-    "web-vitals": "^3.3.2"
+    "web-vitals": "^3.5.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -43,6 +42,6 @@
     ]
   },
   "devDependencies": {
-    "serve": "^14.2.0"
+    "serve": "^14.2.1"
   }
 }
